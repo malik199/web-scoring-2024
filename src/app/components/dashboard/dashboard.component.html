@@ -2,7 +2,7 @@
   <span>Silat Scoring App</span>
   <span class="toolbar-spacer"></span>
   <h1 class="margin-right-button"> {{ pin }}</h1> 
-  <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+  <button mat-fab color="accent" aria-label="Reset Tournament" (click)="openDialog()">
     <mat-icon>restart_alt</mat-icon>
   </button>
 </mat-toolbar>
@@ -13,39 +13,50 @@
       mat-raised-button
       color="primary"
       class="large-button"
-      (click)="generatePin()"
+      (click)="startTournament()"
     >
-      Start New Tournament
+      Start New Arena / Tournament
     </button>
   </div>
   <div *ngIf="pin">
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Competitor 1"
-        [(ngModel)]="competitor1"
-      /> </mat-form-field
-    >&nbsp;&nbsp;
-    <mat-form-field>
-      <input matInput placeholder="Competitor 2" [(ngModel)]="competitor2" />
-    </mat-form-field>
-    <button
-      mat-raised-button
-      color="accent"
-      class="margin-left-button large-button"
-      (click)="startGame()"
-    >
-      Start Game
-    </button>
+    
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput placeholder="Red Corner" type="text" formControlName="redCorner">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Blue Corner"  type="text" formControlName="blueCorner">
+      </mat-form-field>
+      <button mat-raised-button color="accent" class="margin-left-button large-button" type="submit">Start Match</button>
+    </form>
     <div class="centered-element margin-top">
       <h1>
         <span class="pin-number">{{ pin }}</span>
       </h1>
     </div>
   </div>
-  <ul>
-    <li *ngFor="let item of item$ | async">
-      {{ item.name }}
-    </li>
-  </ul>
+  <h2>Or resume an arena/tournament</h2>
+  <div class="fixed-width-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="pin">
+        <th mat-header-cell *matHeaderCellDef>Pin</th>
+        <td mat-cell *matCellDef="let element"><strong>{{element.pin}}</strong> </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="link">
+        <th mat-header-cell *matHeaderCellDef>Link</th>
+        <td mat-cell *matCellDef="let element"><button mat-raised-button color="accent" type="submit">Resume Match</button></td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
 </div>
