@@ -1,0 +1,51 @@
+<mat-toolbar color="primary">
+  <span>Silat Scoring App</span>
+  <span class="toolbar-spacer"></span>
+  <h1 class="margin-right-button"> {{ pin }}</h1> 
+  <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+    <mat-icon>restart_alt</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="content" class="centered-content">
+  <div *ngIf="!pin">
+    <button
+      mat-raised-button
+      color="primary"
+      class="large-button"
+      (click)="generatePin()"
+    >
+      Start New Tournament
+    </button>
+  </div>
+  <div *ngIf="pin">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Competitor 1"
+        [(ngModel)]="competitor1"
+      /> </mat-form-field
+    >&nbsp;&nbsp;
+    <mat-form-field>
+      <input matInput placeholder="Competitor 2" [(ngModel)]="competitor2" />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      class="margin-left-button large-button"
+      (click)="startGame()"
+    >
+      Start Game
+    </button>
+    <div class="centered-element margin-top">
+      <h1>
+        <span class="pin-number">{{ pin }}</span>
+      </h1>
+    </div>
+  </div>
+  <ul>
+    <li *ngFor="let item of item$ | async">
+      {{ item.name }}
+    </li>
+  </ul>
+</div>

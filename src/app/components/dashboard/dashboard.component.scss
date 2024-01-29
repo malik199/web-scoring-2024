@@ -1,0 +1,50 @@
+$width-small: 20px;
+
+.content {
+  margin: $width-small;
+}
+h1 {
+  .pin-number {
+    font-size: 100px;
+    font-weight: bold;
+    letter-spacing: 10px;
+  }
+}
+
+.margin-right-button {
+  margin-right: $width-small;
+}
+
+.margin-left-button {
+ margin-left: $width-small;
+}
+
+.margin-top {
+  margin-top: 30px;
+}
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Or as per your requirement */
+}
+
+.centered-element {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.large-button {
+  font-size: 24px; /* Large font size */
+  padding: 15px 30px; /* Generous padding for bigger button */
+  min-width: 150px; /* Minimum width */
+  min-height: 60px; /* Minimum height */
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+

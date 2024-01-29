@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "tanding-scoring": {
+      "hosting": {
+        "web-scoring-2024": [
+          "silat"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tanding-scoring"
+  }
+}
